@@ -26,3 +26,7 @@ colo ron
 syntax on
 set shiftround
 execute pathogen#infect()
+
+ au CursorHoldI * stopinsert 
+ au InsertEnter * let updaterestore=&updatetime | set updatetime=7000 
+ au InsertLeave * let &updatetime=updaterestore
