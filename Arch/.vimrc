@@ -4,10 +4,10 @@ nnoremap <left> <C-W>h
 nnoremap <right> <C-W>l
 nnoremap <up> <C-W>k
 nnoremap <down> <C-W>j
-map <C-a> :NERDTreeToggle <CR>
 map <F2> :bprevious<CR>
 map <F3> :bnext<CR>
 map <F5> :se fdm=manual<CR> 
+map <F6> :se nofoldenable<CR>
 set nu
 set autoread
 set nowrap
