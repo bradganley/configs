@@ -23,6 +23,10 @@ alias gitview='git log --graph --full-history --all --color --pretty=tformat:"%x
 alias cheat='/usr/bin/cheat'
 alias weather='curl wttr.in'
 alias whatthecom='git commit -am "$(whatcom)"'
+alias null='/dev/null'
+alias q='exit'
+alias lsa='ls -a'
+alias ..='cd ..'
 function whatcom() {
   curl --silent --fail https://whatthecommit.com/index.txt
 }
