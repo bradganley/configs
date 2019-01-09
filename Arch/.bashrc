@@ -56,3 +56,9 @@ mksketch(){
   fi
   vim "$1/$1.ino"
 }
+
+branchdelete(){
+ git branch -d $1
+ git push --delete origin $1
+ echo There you go;
+}
