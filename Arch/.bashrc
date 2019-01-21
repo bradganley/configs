@@ -29,10 +29,11 @@ alias whatthecom='git commit -am "$(whatcom)"'
 alias null='/dev/null'
 alias q='exit'
 alias lsa='ls -a'
-alias ....='cd ..; cd ..; cd ..;'
-alias ...='cd ..; cd ..'
+alias ....='cd ../../..;'
+alias ...='cd ../..'
 alias ..='cd ..'
 alias ll='ls -AlhGrti'
+alias ESC='cd ~/LocalGit/ESC618'
 function whatcom() {
   curl --silent --fail https://whatthecommit.com/index.txt
 }
