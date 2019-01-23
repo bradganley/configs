@@ -34,6 +34,7 @@ alias ...='cd ../..'
 alias ..='cd ..'
 alias ll='ls -AlhGrti'
 alias ESC='cd ~/LocalGit/ESC618'
+alias ta='tmux a -t"
 function whatcom() {
   curl --silent --fail https://whatthecommit.com/index.txt
 }
