@@ -36,6 +36,8 @@ alias ll='ls -AlhGrti'
 alias ESC='cd ~/LocalGit/ESC618'
 alias ta='tmux a -t'
 alias tn='tmux new -s'
+alias nord='nordvpn connect'
+alias nordd='nordvpn disconnect'
 function whatcom() {
   curl --silent --fail https://whatthecommit.com/index.txt
 }
