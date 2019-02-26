@@ -4,11 +4,14 @@ nnoremap <left> <C-W>h
 nnoremap <right> <C-W>l
 nnoremap <up> <C-W>k
 nnoremap <down> <C-W>j
-map <F2> :bprevious<CR>
-map <F3> :bnext<CR>
+map <F1> :bprevious<CR>
+map <F2> :bnext<CR>
+map <F3> :vertical resize -5<CR>
+map <F4> :vertical resize +5<CR>
 map <F5> :se fdm=manual<CR> 
 map <F6> :se nofoldenable<CR>
-set nu
+set foldmethod=manual
+set rnu
 set autoread
 set nowrap
 set shiftwidth=2
