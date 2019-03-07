@@ -72,6 +72,7 @@ bigtext(){
     then
       curl --silent --fail curl 'artii.herokuapp.com/make?text='FUCK+IT'&font='univers''   
     else
+      printf "$1\n"
       curl --silent --fail curl 'artii.herokuapp.com/make?text='$1'&font='univers''
     fi
 }
