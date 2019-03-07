@@ -67,6 +67,14 @@ mksketch(){
   fi
   vim "$1/$1.ino"
 }
+bigtext(){
+  if [ -z "$1"]
+    then
+      curl --silent --fail curl artii.herokuapp.com/make?text='FUCK IT'&font='univers'   
+    else
+      curl --silent --fail curl artii.herokuapp.com/make?text="$1"&font='univers'   
+    fi
+}
 
 branchdelete(){
  git branch -d $1
