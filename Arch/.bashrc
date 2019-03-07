@@ -48,7 +48,7 @@ export npm_config_prefix=~/.node_modules
 export PATH="$PATH:$HOME/go/bin"
 teatimer() {
   sleep $1;
-  mplayer "$HOME/Music/Tornado.mp3" & notify-send 'YOUR TEA IS READY';
+  mplayer "$HOME/Music/Tornado.mp3" & notify-send 'YOUR TEA IS READY OH FUCK';
   curl -X POST "https://api.lifx.com/v1/lights/group_id:58da90e73566e43f037c7b6d59e56d24/effects/pulse" -H "Authorization: Bearer cfbc4b9dd981f5d99d486d22cb75a44535a8e616b9315580cac4ff5d5147ed86" -d 'period=1' -d 'cycles=4' -d 'color='$2; 
   fg
   exit
