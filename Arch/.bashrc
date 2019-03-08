@@ -8,7 +8,6 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
-eval $(thefuck --alias)
 alias trans='rsync -Pve ssh'
 alias update='yay -Syu --noconfirm'
 alias inst='yay --noconfirm -S'
@@ -34,21 +33,38 @@ alias ...='cd ../..'
 alias ..='cd ..'
 alias ll='ls -AlhGrti'
 alias ESC='cd ~/LocalGit/ESC618'
-alias ta='tmux a -t'
-alias tn='tmux new -s'
+alias ta='tmux -2 a -t'
+alias tn='tmux -2 new -s'
+alias tm='tmux -2 attach-session || tmux -2 new-session'
 alias nord='nordvpn connect'
 alias nordd='nordvpn disconnect'
 alias ramdrive='sudo mount -t tmpfs tmpfs /mnt -o size=512m'
+alias fucking='sudo'
+alias pleas='sudo'
+alias fuck='pkill -9' 
+
+export PATH=$PATH:~/scripts:/usr/local/go/bin 
+export npm_config_prefix=~/.node_modules
+export EDITOR='vim'
+export VISUAL='vim'
+
+bk () {
+  if [ -z $1 ]
+  then
+    echo "Type a filename, dumbass"
+  else
+    cp $1{,.bak}
+  fi
+}
+
+md () { 
+  mkdir -p "$@" && cd "$@"; 
+}
+
 function whatcom() {
   curl --silent --fail https://whatthecommit.com/index.txt
 }
-export PATH=$PATH:~/scripts:/usr/local/go/bin 
 
-PATH="$HOME/.node_modules/bin:$PATH"
-export npm_config_prefix=~/.node_modules
-export PATH="$PATH:$HOME/go/bin"
-export EDITOR='vim'
-export VISUAL='vim'
 teatimer() {
   sleep $1;
   mplayer "$HOME/Music/Tornado.mp3" & notify-send 'YOUR TEA IS READY OH FUCK';
