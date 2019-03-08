@@ -38,6 +38,7 @@ alias ta='tmux a -t'
 alias tn='tmux new -s'
 alias nord='nordvpn connect'
 alias nordd='nordvpn disconnect'
+alias ramdrive='sudo mount -t tmpfs tmpfs /mnt -o size=512m'
 function whatcom() {
   curl --silent --fail https://whatthecommit.com/index.txt
 }
@@ -46,6 +47,8 @@ export PATH=$PATH:~/scripts:/usr/local/go/bin
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
 export PATH="$PATH:$HOME/go/bin"
+export EDITOR='vim'
+export VISUAL='vim'
 teatimer() {
   sleep $1;
   mplayer "$HOME/Music/Tornado.mp3" & notify-send 'YOUR TEA IS READY OH FUCK';
