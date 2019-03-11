@@ -40,9 +40,9 @@ alias tn='tmux -2 new -s'
 alias tm='tmux -2 attach-session || tmux -2 new-session'
 alias nord='nordvpn connect'
 alias nordd='nordvpn disconnect'
-alias ramdrive='sudo mount -t tmpfs tmpfs /mnt -o size=512m'
+alias ramdrive='sudo mount -t tmpfs tmpfs /mnt/RAM -o size=512m; echo "512M Disk created in RAM"'
 alias fucking='sudo'
-alias pleas='sudo'
+alias please='sudo'
 alias fuck='pkill -9' 
 
 export PATH=$PATH:~/scripts:/usr/local/go/bin 
