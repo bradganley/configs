@@ -8,6 +8,8 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
+alias ~='cd ~/'
+alias nano='vim'
 alias trans='rsync -Pve ssh'
 alias update='yay -Syu --noconfirm'
 alias inst='yay --noconfirm -S'
@@ -47,6 +49,10 @@ export PATH=$PATH:~/scripts:/usr/local/go/bin
 export npm_config_prefix=~/.node_modules
 export EDITOR='vim'
 export VISUAL='vim'
+
+cd () {
+  builtin cd "$@" && ls -a
+}
 
 bk () {
   if [ -z $1 ]
