@@ -116,3 +116,10 @@ branchdelete(){
  git push --delete origin $1
  echo There you go;
 }
+
+updateconfigs (){
+  cd ~/GIT/configs
+  whatthecom
+  git push origin master
+  cd ~
+}
