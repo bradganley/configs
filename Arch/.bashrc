@@ -44,6 +44,7 @@ alias fucking='sudo'
 alias please='sudo'
 alias fuck='pkill -9' 
 alias mirrorupdate='curl -s "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | sudo tee /etc/pacman.d/mirrorlist'
+alias bashrc='source ~/.bashrc'
 
 export PATH=$PATH:~/scripts:/usr/local/go/bin 
 export npm_config_prefix=~/.node_modules
