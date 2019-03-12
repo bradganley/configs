@@ -40,15 +40,24 @@ alias tn='tmux -2 new -s'
 alias tm='tmux -2 attach-session || tmux -2 new-session'
 alias nord='nordvpn connect'
 alias nordd='nordvpn disconnect'
-alias ramdrive='sudo mount -t tmpfs tmpfs /mnt/RAM -o size=512m; echo "512M Disk created in RAM"'
 alias fucking='sudo'
 alias please='sudo'
 alias fuck='pkill -9' 
+alias mirrorupdate='curl -s "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | sudo tee /etc/pacman.d/mirrorlist'
 
 export PATH=$PATH:~/scripts:/usr/local/go/bin 
 export npm_config_prefix=~/.node_modules
 export EDITOR='vim'
 export VISUAL='vim'
+
+tempdrive () {
+  if [ -z $@ ]
+  then
+    echo "Please provide a disk size in Mb."
+  else
+    sudo mount -t tmpfs tmpfs /mnt/RAM -o size=$@m; echo "$@M Disk created in RAM"
+  fi
+}
 
 cd () {
   builtin cd "$@" && ls -a
