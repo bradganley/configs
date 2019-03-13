@@ -57,6 +57,7 @@ tempdrive () {
     then
       sudo umount /mnt/RAM
       sudo rm -rf /mnt/RAM
+      echo "Temporary drive unmounted and mountpoint deleted"
       return
     fi
   if [ -z $@ ]
