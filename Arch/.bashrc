@@ -53,10 +53,16 @@ export EDITOR='vim'
 export VISUAL='vim'
 
 tempdrive () {
+  $DIRECTORY=/mnt/RAM/
   if [ -z $@ ]
   then
     echo "Please provide a disk size in Mb."
   else
+    if [ -d $DIRECTORY ]
+    then
+      sudo mkdir /mnt/RAM; 
+      echo "Directory created"
+    fi
     sudo mount -t tmpfs tmpfs /mnt/RAM -o size=$@m; echo "$@M Disk created in RAM"
   fi
 }
@@ -103,6 +109,7 @@ mksketch(){
   fi
   vim "$1/$1.ino"
 }
+
 bigtext(){
   if [ -z "$1" ]
     then
