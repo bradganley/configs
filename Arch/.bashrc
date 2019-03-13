@@ -53,18 +53,25 @@ export EDITOR='vim'
 export VISUAL='vim'
 
 tempdrive () {
-  $DIRECTORY=/mnt/RAM/
-  if [ -z $@ ]
-  then
-    echo "Please provide a disk size in Mb."
-  else
-    if [ -d $DIRECTORY ]
+  if [ $@ == 0 ]
     then
-      sudo mkdir /mnt/RAM; 
-      echo "Directory created"
+      sudo umount /mnt/RAM
+      sudo rm -rf /mnt/RAM
+      return
     fi
-    sudo mount -t tmpfs tmpfs /mnt/RAM -o size=$@m; echo "$@M Disk created in RAM"
-  fi
+  if [ -z $@ ]
+    then
+      echo "Please provide a disk size in Mb."
+    else
+      if [ -d /mnt/RAM/ ]
+      then
+        echo "Directory exists"
+      else
+        sudo mkdir /mnt/RAM
+        echo "Directory created"
+      fi
+      sudo mount -t tmpfs tmpfs /mnt/RAM -o size=$@m; echo "$@M Disk created in RAM"
+    fi
 }
 
 cd () {
