@@ -11,6 +11,7 @@ map <F4> :vertical resize +5<CR>
 map <F5> :se fdm=manual<CR> 
 map <F6> :se nofoldenable<CR>
 set foldmethod=manual
+set nu
 set rnu
 set autoread
 set nowrap
