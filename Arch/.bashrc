@@ -7,7 +7,7 @@
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
-
+alias sudo='sudo '
 alias ~='cd ~/'
 alias nano='vim'
 alias trans='rsync -Pve ssh'
