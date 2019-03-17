@@ -161,6 +161,21 @@ needReboot(){
     CURRENT_KERNEL=`uname -r`
     if [ ! "${CURRENT_KERNEL}" = "${FIND}" ]; then
       echo -e "Booted  kernel version is $CURRENT_KERNEL.\n\nReboot required"
+      echo -e "\033[0;31m\n\n Would you like to reboot now?\033[0;0m(y/n)"
+      read answer
+      case $answer in 
+        y) 
+          echo "Rebooting now"
+          sleep 10s
+          reboot
+          ;;
+        n) 
+          echo -e "\nOkay, but that's probably\ngoing to piss you off later"
+          ;;
+        *)
+          echo "That's not an option"
+          ;;
+      esac
     fi
   fi
 }
