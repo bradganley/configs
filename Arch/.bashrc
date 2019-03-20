@@ -46,6 +46,7 @@ alias mirrorupdate='curl -s "https://www.archlinux.org/mirrorlist/?country=US&pr
 alias bashrc='source ~/.bashrc'
 alias iotop='sudo iotop'
 alias artistradio='tizonia --spotify-related-artists'
+alias wifilist='nmcli device wifi list'
 
 export PATH=$PATH:~/scripts:/usr/local/go/bin 
 export npm_config_prefix=~/.node_modules
@@ -148,7 +149,7 @@ updateconfigs (){
 needReboot(){
   NEXTLINE=0
   FIND=""
-  for I in `file /boot/vmlinuz*`; do
+  for I in `file /boot/vmlinuz-*-*`; do
     if [ ${NEXTLINE} -eq 1 ]; then
       FIND="${I}"
       echo -e "\n\nCurrent kernel version is $FIND\n\n"
@@ -177,5 +178,13 @@ needReboot(){
           ;;
       esac
     fi
+  fi
+}
+
+squish(){
+  if [ -z $@ ]; then
+    echo -e "\nName a file, asshole\n"
+  else
+   pv $@ | gzip -9 > "$@.gz"
   fi
 }
