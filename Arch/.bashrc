@@ -47,7 +47,7 @@ alias bashrc='source ~/.bashrc'
 alias iotop='sudo iotop'
 alias artistradio='tizonia --spotify-related-artists'
 alias wifilist='nmcli device wifi list'
-
+alias cb='xclip -selection clipboard'
 export PATH=$PATH:~/scripts:/usr/local/go/bin 
 export npm_config_prefix=~/.node_modules
 export EDITOR='vim'
@@ -186,5 +186,23 @@ squish(){
     echo -e "\nName a file, asshole\n"
   else
    pv $@ | gzip -9 > "$@.gz"
+  fi
+}
+
+jsonlint(){
+  if [ -z "$@" ]
+  then 
+    echo "Enter some JSON please"
+  else
+    chromium "https:jsonlint.com/?json={$1}"
+  fi
+}
+
+jsonform(){
+  if [ -z "$@" ]
+  then
+    echo "Enter a JSON URL please"
+  else
+    chromium "https://jsonformatter.curiousconcept.com/#$1" 
   fi
 }
