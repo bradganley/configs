@@ -113,6 +113,9 @@ mksketch(){
   elif [ "$2" = "web" ]
   then
     cp "$HOME/skeletons/webserv.ino" "$1/$1.ino"
+  elif [ "$2" = "mqtt" ]
+  then
+    cp "$HOME/skeletons/mqttSkel.ino" "$1/$1.ino"
   else
     cp "$HOME/skeletons/basic.ino" "$1/$1.ino"
   fi
@@ -204,5 +207,15 @@ jsonform(){
     echo "Enter a JSON URL please"
   else
     chromium "https://jsonformatter.curiousconcept.com/#$1" 
+  fi
+}
+
+haste(){
+  if [ -z $1 ]
+  then
+      echo "Please enter some fucking data"
+  else
+    key=$(curl 'https://hastebin.com/documents' --data-binary "$1" | jq -r '.key')
+    chromium http://hastebin.com/$key
   fi
 }
