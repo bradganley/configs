@@ -4,7 +4,9 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+    exec tmux -2 attach-session || tmux -2 new-session
+fi
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 alias sudo='sudo '
@@ -219,3 +221,4 @@ haste(){
     chromium http://hastebin.com/$key
   fi
 }
+
