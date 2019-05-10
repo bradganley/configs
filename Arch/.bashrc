@@ -4,11 +4,12 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-    exec tmux -2 attach-session || tmux -2 new-session
-fi
+#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#    exec tmux -2 attach-session || tmux -2 new-session
+#fi
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+export TERM=linux
 alias sudo='sudo '
 alias ~='cd ~/'
 alias nano='vim'
@@ -50,7 +51,7 @@ alias iotop='sudo iotop'
 alias artistradio='tizonia --spotify-related-artists'
 alias wifilist='nmcli device wifi list'
 alias cb='xclip -selection clipboard'
-export PATH=$PATH:~/scripts:/usr/local/go/bin 
+export PATH=$PATH:~/scripts:~/bin:/usr/local/go/bin 
 export npm_config_prefix=~/.node_modules
 export EDITOR='vim'
 export VISUAL='vim'
@@ -222,3 +223,8 @@ haste(){
   fi
 }
 
+reinstallAll(){
+for pkg in $(pacman -Q | cut -d' ' -f1); do
+  yay -S --noconfirm $pkg | lolcat
+done
+}
