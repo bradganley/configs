@@ -8,7 +8,11 @@
 #    exec tmux -2 attach-session || tmux -2 new-session
 #fi
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+#PS1='[\u@\h \W]\$ '
+
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+fi
 export TERM=linux
 alias sudo='sudo '
 alias ~='cd ~/'
@@ -45,7 +49,6 @@ alias nordd='nordvpn disconnect'
 alias fucking='sudo'
 alias please='sudo'
 alias fuck='pkill -9' 
-alias mirrorupdate='curl -s "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | sudo tee /etc/pacman.d/mirrorlist'
 alias bashrc='source ~/.bashrc'
 alias iotop='sudo iotop'
 alias artistradio='tizonia --spotify-related-artists'
