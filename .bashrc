@@ -7,7 +7,7 @@
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #    exec tmux -2 attach-session || tmux -2 new-session
 #fi
-alias ls='exa -l'
+alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
 
 if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
@@ -21,7 +21,7 @@ alias trans='rsync -Pve ssh'
 alias update='yay -Syu --noconfirm'
 alias inst='yay --noconfirm -S'
 alias burn='yay -Rns'
-alias ls='exa -l'
+alias ls='ls --color=auto'
 alias pacs='yay -Ss'
 alias svim='sudo -E vim'
 alias vi='vim'
@@ -35,7 +35,7 @@ alias weather='curl wttr.in'
 alias whatthecom='git commit -am "$(whatcom)"'
 alias null='/dev/null'
 alias q='exit'
-alias lsa='exa -la@'
+alias lsa='ls -lah'
 alias ....='cd ../../..;'
 alias ...='cd ../..'
 alias ..='cd ..'
