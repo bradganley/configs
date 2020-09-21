@@ -83,7 +83,7 @@ tempdrive () {
 }
 
 cd () {
-  builtin cd "$@" && ls -a
+  builtin cd "$@" && exa -l
 }
 
 bk () {
@@ -100,7 +100,7 @@ md () {
 }
 
 function whatcom() {
-  curl --silent --fail https://whatthecommit.com/index.txt
+  curl whatthecommit.com/index.txt
 }
 
 teatimer() {
