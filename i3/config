@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite 
+bindsym $mod+Return exec uxterm 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -178,7 +178,7 @@ hide_edge_borders both
 new_window 1pixel
 exec_always xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 exec_always xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
-exec_always feh --randomize --bg-fill /home/brad/walls
+exec_always feh --randomize --bg-center /home/brad/.walls/*
 exec_always nm-applet
 exec_always sensors-applet
 exec_always blueman-applet
