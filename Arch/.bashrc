@@ -53,6 +53,9 @@ alias iotop='sudo iotop'
 alias artistradio='tizonia --spotify-related-artists'
 alias wifilist='nmcli device wifi list'
 alias cb='xclip -selection clipboard'
+alias sync='rclone sync -P'
+
+
 export PATH=$PATH:~/scripts:~/bin:/usr/local/go/bin 
 export npm_config_prefix=~/.node_modules
 export EDITOR='vim'
