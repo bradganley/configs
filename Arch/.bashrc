@@ -205,7 +205,7 @@ jsonlint(){
   then 
     echo "Enter some JSON please"
   else
-    chromium "https:jsonlint.com/?json={$1}"
+    chromium "https:jsonlint.com/?json={$(cat $1)}"
   fi
 }
 

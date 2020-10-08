@@ -161,6 +161,7 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+bindsym $mod+o exec deepin-screenshot 
 bindsym $mod+r mode "resize"
 bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
