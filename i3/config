@@ -183,3 +183,4 @@ exec_always feh --randomize --bg-center /home/brad/.walls/*
 exec_always nm-applet
 exec_always sensors-applet
 exec_always blueman-applet
+exec barrier
