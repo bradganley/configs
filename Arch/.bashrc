@@ -157,41 +157,6 @@ updateconfigs (){
   cd ~
 }
 
-needReboot(){
-  NEXTLINE=0
-  FIND=""
-  for I in `file /boot/vmlinuz-*-*`; do
-    if [ ${NEXTLINE} -eq 1 ]; then
-      FIND="${I}"
-      echo -e "\n\nCurrent kernel version is $FIND\n\n"
-      NEXTLINE=0
-    else
-      if [ "${I}" = "version" ]; then NEXTLINE=1; fi
-    fi
-  done
-  if [ ! "${FIND}" = "" ]; then
-    CURRENT_KERNEL=`uname -r`
-    if [ ! "${CURRENT_KERNEL}" = "${FIND}" ]; then
-      echo -e "Booted  kernel version is $CURRENT_KERNEL.\n\nReboot required"
-      echo -e "\033[0;31m\n\n Would you like to reboot now?\033[0;0m(y/n)"
-      read answer
-      case $answer in 
-        y) 
-          echo "Rebooting now"
-          sleep 10s
-          reboot
-          ;;
-        n) 
-          echo -e "\nOkay, but that's probably\ngoing to piss you off later"
-          ;;
-        *)
-          echo "That's not an option"
-          ;;
-      esac
-    fi
-  fi
-}
-
 squish(){
   if [ -z $@ ]; then
     echo -e "\nName a file, asshole\n"
