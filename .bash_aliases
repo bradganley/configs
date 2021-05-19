@@ -1,10 +1,10 @@
-#Application management
+# Application management
 alias inst='sudo apt-get install -y'
 alias update='sudo apt-get update -y && sudo apt-get upgrade -y'
 alias pacs='apt-cache search'
 alias burn='sudo apt-get autoremove'
 
-#General
+# General
 alias ~='cd ~/'
 alias ll='ls -AlhGrti'
 alias lsa='ls -lah'
@@ -13,7 +13,14 @@ alias gh='history|grep'
 alias cpv='rsync -ah --info=progress2'
 alias please='sudo'
 
-#Tmux
+# Utilities
+alias pang='ping -i 10 -v -a'
+alias mnts='mount | column -t'
+
+# Tmux
 alias mux='tmux new -s main'
 alias ta='tmux -2 a -t'
 alias tn='tmux -2 new -s'
+
+# Misc
+alias wttr='ansiweather -l belleville,illinois -u imperial -s false'
