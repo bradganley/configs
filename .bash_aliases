@@ -1,8 +1,8 @@
 #Application management
-alias inst='apt-get install -y'
-alias update='apt-get update -y && apt-get upgrade -y'
+alias inst='sudo apt-get install -y'
+alias update='sudo apt-get update -y && sudo apt-get upgrade -y'
 alias pacs='apt-cache search'
-alias burn='apt-get autoremove'
+alias burn='sudo apt-get autoremove'
 
 #General
 alias ~='cd ~/'
