@@ -18,6 +18,8 @@ alias src='source .bashrc'
 # Utilities
 alias pang='ping -i 10 -v -a'
 alias mnts='mount | column -t'
+alias h='history'
+alias hgrep='history | grep'
 
 # Tmux
 alias mux='tmux new -s main'
