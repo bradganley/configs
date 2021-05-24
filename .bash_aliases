@@ -12,6 +12,8 @@ alias lt='ls --human-readable --size -1 -S --classify'
 alias gh='history|grep'
 alias cpv='rsync -ah --info=progress2'
 alias please='sudo'
+alias cat='batcat'
+alias src='source .bashrc'
 
 # Utilities
 alias pang='ping -i 10 -v -a'
