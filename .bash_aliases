@@ -30,3 +30,5 @@ alias tn='tmux -2 new -s'
 # Misc
 alias wttr='ansiweather -l belleville,illinois -u imperial -s false'
 rtfm() { help $@ || info $@ || man $@ || curl "http://cheat.sh/$@"; }
+
+ch() { curl "http://cheat.sh/$@"; }
