@@ -15,6 +15,7 @@ alias please='sudo'
 alias fucking='sudo'
 alias cat='batcat'
 alias src='source .bashrc'
+alias ding='ping -i 5 -a'
 
 # Utilities
 alias pang='ping -i 10 -v -a'
@@ -26,6 +27,8 @@ alias hgrep='history | grep'
 alias mux='tmux new -s main'
 alias ta='tmux -2 a -t'
 alias tn='tmux -2 new -s'
+alias bin='nc termbin.com 9999'
+nquick (){ sudo nmap -sV -T4 -O -F --version-light $@; }
 
 # Misc
 alias wttr='ansiweather -l belleville,illinois -u imperial -s false'
