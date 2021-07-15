@@ -34,4 +34,8 @@ nquick (){ sudo nmap -sV -T4 -O -F --version-light $@; }
 alias wttr='ansiweather -l belleville,illinois -u imperial -s false'
 rtfm() { help $@ || info $@ || man $@ || curl "http://cheat.sh/$@"; }
 
+extip(){ ip=$(curl -s http://api.ipify.org);
+	echo "Public IP address is $ip"
+}
+
 ch() { curl "http://cheat.sh/$@"; }
