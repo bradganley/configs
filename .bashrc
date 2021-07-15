@@ -1,233 +1,117 @@
-#
-# ~/.bashrc
-#
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#    exec tmux -2 attach-session || tmux -2 new-session
-#fi
-alias ls='ls --color=auto'
-#PS1='[\u@\h \W]\$ '
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
 fi
-export TERM=linux
-alias sudo='sudo '
-alias ~='cd ~/'
-alias nano='vim'
-alias trans='rsync -Pve ssh'
-alias update='yay -Syu --noconfirm'
-alias inst='yay --noconfirm -S'
-alias burn='yay -Rns'
-alias ls='ls --color=auto'
-alias pacs='yay -Ss'
-alias svim='sudo -E vim'
-alias vi='vim'
-alias h='history'
-alias mux='tmux new -s main'
-alias supd='sudo pacman -Syyuu'
-alias ncdu='ncdu --color dark'
-alias bigclock='watch -t -n 1 "date '+%D%n%I:%M:%S' | figlet -k"|lolcat'
-alias gitview='git log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"'
-alias weather='curl wttr.in'
-alias whatthecom='git commit -am "$(whatcom)"'
-alias null='/dev/null'
-alias q='exit'
-alias lsa='ls -lah'
-alias ....='cd ../../..;'
-alias ...='cd ../..'
-alias ..='cd ..'
-alias ll='ls -AlhGrti'
-alias ESC='cd ~/LocalGit/ESC618'
-alias ta='tmux -2 a -t'
-alias tn='tmux -2 new -s'
-alias tm='tmux -2 attach-session || tmux -2 new-session'
-alias nord='nordvpn connect'
-alias nordd='nordvpn disconnect'
-alias fucking='sudo'
-alias please='sudo'
-alias fuck='pkill -9' 
-alias bashrc='source ~/.bashrc'
-alias iotop='sudo iotop'
-alias artistradio='tizonia --spotify-related-artists'
-alias wifilist='nmcli device wifi list'
-alias cb='xclip -selection clipboard'
-export PATH=$PATH:~/scripts:~/bin:/usr/local/go/bin 
-export npm_config_prefix=~/.node_modules
-export EDITOR='vim'
-export VISUAL='vim'
 
-tempdrive () {
-  if [ $@ == 0 ]
-    then
-      sudo umount /mnt/RAM
-      sudo rm -rf /mnt/RAM
-      echo "Temporary drive unmounted and mountpoint deleted"
-      return
-    fi
-  if [ -z $@ ]
-    then
-      echo "Please provide a disk size in Mb."
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-      if [ -d /mnt/RAM/ ]
-      then
-        echo "Directory exists"
-      else
-        sudo mkdir /mnt/RAM
-        echo "Directory created"
-      fi
-      sudo mount -t tmpfs tmpfs /mnt/RAM -o size=$@m; echo "$@M Disk created in RAM"
+	color_prompt=
     fi
-}
+fi
 
-cd () {
-  builtin cd "$@" && ls -a
-}
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
 
-bk () {
-  if [ -z $1 ]
-  then
-    echo "Type a filename, dumbass"
-  else
-    cp $1{,.bak}
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
   fi
-}
-
-md () { 
-  mkdir -p "$@" && cd "$@"; 
-}
-
-function whatcom() {
-  curl --silent --fail https://whatthecommit.com/index.txt
-}
-
-teatimer() {
-  sleep $1;
-  mplayer "$HOME/Music/Tornado.mp3" & notify-send 'YOUR TEA IS READY OH FUCK';
-  curl -X POST "https://api.lifx.com/v1/lights/group_id:58da90e73566e43f037c7b6d59e56d24/effects/pulse" -H "Authorization: Bearer cfbc4b9dd981f5d99d486d22cb75a44535a8e616b9315580cac4ff5d5147ed86" -d 'period=1' -d 'cycles=4' -d 'color='$2; 
-  fg
-  exit
-}
-
-mksketch(){
-  mkdir "$1";
-  if [ "$2" = 'adr' ]
-  then
-    cp "$HOME/skeletons/adr.ino" "$1/$1.ino"
-  elif [ "$2" = "web" ]
-  then
-    cp "$HOME/skeletons/webserv.ino" "$1/$1.ino"
-  elif [ "$2" = "mqtt" ]
-  then
-    cp "$HOME/skeletons/mqttSkel.ino" "$1/$1.ino"
-  else
-    cp "$HOME/skeletons/basic.ino" "$1/$1.ino"
-  fi
-  vim "$1/$1.ino"
-}
-
-bigtext(){
-  if [ -z "$1" ]
-    then
-      curl --silent --fail curl 'artii.herokuapp.com/make?text='FUCK+IT'&font='univers''   
-    else
-      printf "$1\n"
-      curl --silent --fail curl 'artii.herokuapp.com/make?text='$1'&font='univers''
-    fi
-}
-
-branchdelete(){
- git branch -d $1
- git push --delete origin $1
- echo There you go;
-}
-
-cheat(){
-  curl "cheat.sh/$1"
-}
-
-updateconfigs (){
-  cd ~/GIT/configs
-  whatthecom
-  git push origin master
-  cd ~
-}
-
-needReboot(){
-  NEXTLINE=0
-  FIND=""
-  for I in `file /boot/vmlinuz-*-*`; do
-    if [ ${NEXTLINE} -eq 1 ]; then
-      FIND="${I}"
-      echo -e "\n\nCurrent kernel version is $FIND\n\n"
-      NEXTLINE=0
-    else
-      if [ "${I}" = "version" ]; then NEXTLINE=1; fi
-    fi
-  done
-  if [ ! "${FIND}" = "" ]; then
-    CURRENT_KERNEL=`uname -r`
-    if [ ! "${CURRENT_KERNEL}" = "${FIND}" ]; then
-      echo -e "Booted  kernel version is $CURRENT_KERNEL.\n\nReboot required"
-      echo -e "\033[0;31m\n\n Would you like to reboot now?\033[0;0m(y/n)"
-      read answer
-      case $answer in 
-        y) 
-          echo "Rebooting now"
-          sleep 10s
-          reboot
-          ;;
-        n) 
-          echo -e "\nOkay, but that's probably\ngoing to piss you off later"
-          ;;
-        *)
-          echo "That's not an option"
-          ;;
-      esac
-    fi
-  fi
-}
-
-squish(){
-  if [ -z $@ ]; then
-    echo -e "\nName a file, asshole\n"
-  else
-   pv $@ | gzip -9 > "$@.gz"
-  fi
-}
-
-jsonlint(){
-  if [ -z "$@" ]
-  then 
-    echo "Enter some JSON please"
-  else
-    chromium "https:jsonlint.com/?json={$1}"
-  fi
-}
-
-jsonform(){
-  if [ -z "$@" ]
-  then
-    echo "Enter a JSON URL please"
-  else
-    chromium "https://jsonformatter.curiousconcept.com/#$1" 
-  fi
-}
-
-haste(){
-  if [ -z $1 ]
-  then
-      echo "Please enter some fucking data"
-  else
-    key=$(curl 'https://hastebin.com/documents' --data-binary "$1" | jq -r '.key')
-    chromium http://hastebin.com/$key
-  fi
-}
-
-reinstallAll(){
-for pkg in $(pacman -Q | cut -d' ' -f1); do
-  yay -S --noconfirm $pkg | lolcat
-done
-}
+fi
