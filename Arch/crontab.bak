@@ -1,6 +1,0 @@
-# * - Wildcard/ Every interval
-# , - multiple values separated by comma
-# - - specify range between two numbers
-# / Specify periodicity/frequency 
-#minute | hour | Day of Month | Month | Day of week command
-*/1 * * * * DISPLAY=:0.0 feh --randomize --bg-center /home/brad/Pictures/* 
