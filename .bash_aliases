@@ -22,7 +22,7 @@ alias pang='ping -i 10 -v -a'
 alias mnts='mount | column -t'
 alias h='history'
 alias hgrep='history | grep'
-alias netdis='sudo netdiscover -S -f -i eno1sudo netdiscover -S -f -i eno1'
+alias netdis='sudo netdiscover -S -f -i eno1'
 
 # Tmux
 alias mux='tmux new -s main'
