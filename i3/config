@@ -198,4 +198,6 @@ default_border none
 
 exec_always xinput set-prop "Atmel Atmel maXTouch Digitizer" "Device Enabled" 0
 exec --no-startup-id blueman-applet
+exec_always --no-startup-id nm-applet
 exec_always --no-startup-id parcellite
+exec_always --no-startup-id volumeicon
